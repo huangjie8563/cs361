@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Food Choice Generator</title>
+	<style type="text/css">
+		body{
+			background-image: url('bg_image.jpg');
+		}
+		#container{
+			border:  1px solid ;
+			border-radius: 15px;
+			margin: auto;
+			padding: 70px;
+			justify-content: center;
+			position: relative;
+			background-color: white;
+			box-shadow: 20px 20px 50px 15px grey;
+			height: 50%;
+			width: 50%;
+			opacity: 0.9;
+		}
+		.header_div
+		{
+			border:  1px solid ;
+			border-radius: 15px;
+			margin-bottom: 5px;
+			margin-left: 25%;
+			justify-content: center;
+			position: relative;
+			background-color: magenta;
+			text-align: center;
+			width: 50%;
+			height: 10%;
+		}
+		button{
+			border: none;
+			display: inline-block;
+			text-align: center;
+			font-size: 15px;
+			font-weight: bolder;
+			margin: 50px;
+			border-radius: 15px;
+			width: 110px;
+			height: 90px;
+			background-color: orange;
+		}
+		button:hover{
+			background-color: black ;
+			color: white;
+		}
+		.column {
+		  flex: 50%;
+		  padding: 0 4px;
+		}
+
+	</style>
+	
+</head>
+<body>
+	<p align="center">
+	<div class='header_div'>
+		<h1 id="header">
+		Food Choice generator
+		</h1>
+	</div>
+	<div id="container">
+		<button onclick="generateImages('Fruits')" >Fruits</button>
+		<button	onclick="generateImages('Seafood')">Seafood</button>
+		<button onclick="generateImages('Beverages')">Beverages</button> <br>
+		<button	onclick="generateImages('Burger')">Burger</button>
+		<button onclick="generateImages('Pizza')">Pizza</button>
+		<button onclick="generateImages('Ramen')">Ramen</button>
+		
+	</div>
+	</p>
+	<script type="text/javascript">
+		var prevHTMLhdr = document.getElementById('header').innerHTML;
+		var prevHTMLcont = document.getElementById('container').innerHTML;
+		var images = {};
+		images['Fruits'] = ['apple.jpg', 'banana.jpg', 'orange.jpg'];
+		images['Seafood']= ['salmon.jpg', 'oysters.jpg', 'albalone.jpg'];
+		images['Beverages'] = ['coke.jpg', 'beer.jpg', 'wine.jpg'];
+		images['Burger'] = ['veggie.jpg', 'chicken.jpg', 'wild_salmon.jpg'];
+
+		function generateImages(type)
+		{
+			var check = window.confirm("You will generate a list of "+type+" Images\n Would you like to continue?");
+			if(! check){
+				return ;
+			}
+			document.getElementById('header').innerHTML = type;
+			// 
+			var modHTML = '<div class="column">';
+			var ims = images[type];
+
+			ims.forEach(myFunc);
+
+			function myFunc(value)
+			{
+				modHTML += "<img src = \""+type+"/"+value+"\" width=\"200\" height=\"200\">";
+			}
+			modHTML+= " <button onclick=\"home()\" >Home</button>"
+			modHTML+= "<button	onclick=\"send()\">Send</button> "
+			modHTML+= "</div>";
+
+			document.getElementById('container').innerHTML = modHTML;
+
+			
+		}
+		function home()
+		{
+			document.getElementById('header').innerHTML = prevHTMLhdr;
+			document.getElementById('container').innerHTML = prevHTMLcont;
+		}
+		function send()
+		{
+
+		}
+
+	</script>
+</body>
+</html>
